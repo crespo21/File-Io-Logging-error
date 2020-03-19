@@ -1,0 +1,6 @@
+Full name: tabz
+Age: 10
+Date of visit: 2020-03-19
+Time of visit: 12:57:04.760011
+Comments: aa
+Assistant: Tshepo

@@ -1,0 +1,6 @@
+Full name: tshepo lesley seleke
+Age: 20
+Date of visit: 2020-03-19
+Time of visit: 12:59:00.423145
+Comments: This is file created by a Test class
+Assistant: crespo
