@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -20,24 +21,24 @@ public class Visitor {
 
         FileWriter fileWriter = null;
         boolean checker = false;
-         try {
+        try {
             if (!fullName.isEmpty()) {
 
                 checker = true;
                 File visitorFile = new File("visitor_ " +
                         fullName.replace(" ", "_")+".txt");
                 if (visitorFile.createNewFile()) {
-                     fileWriter = new FileWriter(visitorFile);
-                     fileWriter.write("Full name: " + fullName + "\n" +
-                       "Age: " + Age+ " years old"+ "\n" +
-                       "Date of visit: " + LocalDate.now() + "\n" +
-                       "Time of visit: " + LocalTime.now() + "\n" + "Comments: " + comments + "\n" +
-                       "Assistant: " + Assistant);
-                     String msg = "Recruit's file successfully created!";
+                    fileWriter = new FileWriter(visitorFile);
+                    fileWriter.write("Full name: " + fullName + "\n" +
+                            "Age: " + Age+ " years old"+ "\n" +
+                            "Date of visit: " + LocalDate.now() + "\n" +
+                            "Time of visit: " + LocalTime.now() + "\n" + "Comments: " + comments + "\n" +
+                            "Assistant: " + Assistant);
+                    String msg = "Recruit's file successfully created!";
                     logger.info((msg));
                 }
                 else{
-                     logger.error("file already exist");
+                    logger.error("file already exist");
                 }
 
             }
@@ -45,14 +46,14 @@ public class Visitor {
                 checker = false;
                 logger.error("File not  created! because full name cannot be empty!");
             }
-         }
-         catch (IOException e) {
-             logger.info(saves(fullName,Age,comments,Assistant));
-                logger.error(saves(fullName,Age,comments,Assistant));
-             System.out.println(" ");
-                e.printStackTrace();
-         }
-         fileWriter.close();
+        }
+        catch (IOException e) {
+            logger.info(saves(fullName,Age,comments,Assistant));
+            logger.error(saves(fullName,Age,comments,Assistant));
+            System.out.println(" ");
+            e.printStackTrace();
+        }
+        fileWriter.close();
 
         return checker;
 
@@ -74,7 +75,7 @@ public class Visitor {
         }
         return fullName;
     }
-        public static void main(String[] args)  {
+    public static void main(String[] args)  {
         try {
             System.out.println("Welcome to Umuzi's VisInfoCap");
             System.out.println(" ");
@@ -103,5 +104,4 @@ public class Visitor {
         }
 
     }
-
-}
+    }
