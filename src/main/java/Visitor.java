@@ -21,12 +21,11 @@ public class Visitor {
         FileWriter fileWriter = null;
         boolean checker = false;
          try {
-             if (fullName.isEmpty()) {
+            if (!fullName.isEmpty()) {
 
                 checker = true;
                 File visitorFile = new File("visitor_ " +
                         fullName.replace(" ", "_")+".txt");
-                
                 if (visitorFile.createNewFile()) {
                      fileWriter = new FileWriter(visitorFile);
                      fileWriter.write("Full name: " + fullName + "\n" +
