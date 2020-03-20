@@ -15,16 +15,18 @@ public class Visitor {
     private static String comments;
     private static String Assistant = "Tshepo";
 
-
     private static final Logger logger = LogManager.getLogger(Visitor.class.getName());
     public static boolean saves(String fullName, int Age, String comments, String Assistant) throws IOException {
+
         FileWriter fileWriter = null;
         boolean checker = false;
          try {
-            if (!fullName.isEmpty()) {
+             if (fullName.isEmpty()) {
+
                 checker = true;
                 File visitorFile = new File("visitor_ " +
                         fullName.replace(" ", "_")+".txt");
+                
                 if (visitorFile.createNewFile()) {
                      fileWriter = new FileWriter(visitorFile);
                      fileWriter.write("Full name: " + fullName + "\n" +
@@ -32,7 +34,8 @@ public class Visitor {
                        "Date of visit: " + LocalDate.now() + "\n" +
                        "Time of visit: " + LocalTime.now() + "\n" + "Comments: " + comments + "\n" +
                        "Assistant: " + Assistant);
-                    System.out.println("Recruit's file successfully created!");
+                     String msg = "Recruit's file successfully created!";
+                    logger.info((msg));
                 }
                 else{
                      logger.error("file already exist");
@@ -45,7 +48,9 @@ public class Visitor {
             }
          }
          catch (IOException e) {
+             logger.info(saves(fullName,Age,comments,Assistant));
                 logger.error(saves(fullName,Age,comments,Assistant));
+             System.out.println(" ");
                 e.printStackTrace();
          }
          fileWriter.close();
@@ -85,6 +90,8 @@ public class Visitor {
 
             System.out.println("please enter your comments");
             comments = input2.nextLine();
+            System.out.println(" ");
+            System.out.println(" ");
             System.out.println(" ");
             logger.error(saves(fullName, Age, comments, Assistant));
             Visitor vst = new Visitor();
