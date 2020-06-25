@@ -1,8 +1,5 @@
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import  java.time.LocalTime;
 import java.util.Scanner;
@@ -11,22 +8,22 @@ import org.apache.logging.log4j.Logger;
 
 public class Visitor {
 
-    private static String fullName;
-    private static int Age;
-    private static String comments;
-    private static String Assistant = "Tshepo";
 
     private static final Logger logger = LogManager.getLogger(Visitor.class.getName());
+
+
     public static boolean saves(String fullName, int Age, String comments, String Assistant) throws IOException {
 
         FileWriter fileWriter = null;
-        boolean checker = false;
+        new File("visitor_ " +
+                fullName.replace(" ", "_") + ".txt");
+        File visitorFile;
         try {
             if (!fullName.isEmpty()) {
-
-                checker = true;
-                File visitorFile = new File("visitor_ " +
+                //create a new file
+                 visitorFile = new File("visitor_ " +
                         fullName.replace(" ", "_")+".txt");
+                 //writing to a file
                 if (visitorFile.createNewFile()) {
                     fileWriter = new FileWriter(visitorFile);
                     fileWriter.write("Full name: " + fullName + "\n" +
@@ -38,12 +35,10 @@ public class Visitor {
                     logger.info((msg));
                 }
                 else{
-                    logger.error("file already exist");
+                    logger.debug("file already exist");
                 }
-
             }
             else{
-                checker = false;
                 logger.error("File not  created! because full name cannot be empty!");
             }
         }
@@ -53,55 +48,84 @@ public class Visitor {
             System.out.println(" ");
             e.printStackTrace();
         }
+        assert fileWriter != null;
         fileWriter.close();
 
-        return checker;
+        return true;
 
     }
-    public static String load(String fullName){
-        try{
-            File visitorFile = new File("visitor_ " +
-                    fullName.replace(" ", "_")+".txt");
-            Scanner reader = new Scanner(visitorFile);
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                System.out.println(data);
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
+
+    //search for a file
+    public static File load(String fullName) {
+        // load a file to read from using fullName
+        File files = new  File("visitor_ " +
+                fullName.replace(" ", "_")+".txt");
+        // check if file is readable
+        if (!files.canRead()) {
             logger.error("File not Found :(");
-            e.getStackTrace();
-
+        } else {
+            System.out.println(files);
         }
-        return fullName;
+        return files;
     }
+
     public static void main(String[] args)  {
         try {
             System.out.println("Welcome to Umuzi's VisInfoCap");
             System.out.println(" ");
+            int choice;
+            char repeat;
+            String input;
+            Scanner select = new Scanner(System.in);
 
-            Scanner input = new Scanner(System.in);
-            System.out.println("please enter your name: ");
-            fullName = input.nextLine();
+            do {
+                //Menu options
+                System.out.println("****************************");
+                System.out.println("* Umuzi Management Systems *");
+                System.out.println("* Enter Your Menu Choice:  *");
+                System.out.println("*       1. Save            *");
+                System.out.println("*       2. Load            *");
+                System.out.println("****************************");
+                choice = select.nextInt();
+
+
+                switch (choice) {
+
+                    case 1:
+                    Scanner input0 = new Scanner(System.in);
+                   System.out.println("please enter your name: ");
+                         String fullName = input0.nextLine();
             Scanner input1 = new Scanner(System.in);
             System.out.println("please enter your age");
-            Age = input1.nextInt();
+            int age = input1.nextInt();
             Scanner input2 = new Scanner(System.in);
-
             System.out.println("please enter your comments");
-            comments = input2.nextLine();
+            String comments = input2.nextLine();
             System.out.println(" ");
-            System.out.println(" ");
-            System.out.println(" ");
-            logger.error(saves(fullName, Age, comments, Assistant));
-            Visitor vst = new Visitor();
-            vst.load(fullName);
-            System.out.println(" ");
-            System.out.println(("This file belong's to " + fullName));
+            Scanner input3 = new Scanner(System.in);
+            System.out.println("please enter your assistant name");
+            String assistant = input3.nextLine();
+            saves(fullName,age,comments, assistant);
+                        break;
+                    case 2:
+                        Scanner inputLoad = new Scanner(System.in);
+                        System.out.println("please enter your name: ");
+                        fullName = inputLoad.nextLine();
+                        load(fullName);
+                        break;
+                    default:
+                        System.out.println("Invalid menu choice , try again.");
+                        break;
+                }
+                System.out.println();
+                System.out.println("Would you like to save or load visitor information again ?");
+                System.out.println("Enter Y for yes or N for no :");
+                input = select.next();
+                repeat = input.charAt(0);
+            }while (repeat == 'Y' || repeat == 'y');
         } catch (NullPointerException | IOException e){
             e.getMessage();
-
         }
+    }
+}
 
-    }
-    }
