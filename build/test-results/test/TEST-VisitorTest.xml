@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-25T11:08:00" hostname="admin1-ThinkCentre-M72e" time="0.632">
+<testsuite name="VisitorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-06-25T12:28:57" hostname="admin1-ThinkCentre-M72e" time="0.657">
   <properties/>
-  <testcase name="visitorloadTest" classname="VisitorTest" time="0.632"/>
+  <testcase name="visitorloadTest" classname="VisitorTest" time="0.657"/>
   <system-out><![CDATA[visitor_ tshepo_lesley_seleke.txt
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

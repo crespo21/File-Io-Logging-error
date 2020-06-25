@@ -1,19 +1,12 @@
-
 import java.io.*;
 import java.time.LocalDate;
 import  java.time.LocalTime;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 public class Visitor {
-
-
     private static final Logger logger = LogManager.getLogger(Visitor.class.getName());
-
-
     public static boolean saves(String fullName, int Age, String comments, String Assistant) throws IOException {
-
         FileWriter fileWriter = null;
         new File("visitor_ " +
                 fullName.replace(" ", "_") + ".txt");
@@ -50,28 +43,28 @@ public class Visitor {
         }
         assert fileWriter != null;
         fileWriter.close();
-
         return true;
-
     }
-
     //search for a file
     public static File load(String fullName) {
         // load a file to read from using fullName
         File files = new  File("visitor_ " +
                 fullName.replace(" ", "_")+".txt");
         // check if file is readable
-        if (!files.canRead()) {
+        if (!files.exists()) {
             logger.error("File not Found :(");
         } else {
-            System.out.println(files);
+            System.out.println("File name: " + files.getName());
+            System.out.println("Absolute path: " + files.getAbsoluteFile());
+            System.out.println("Writeable: " + files.canWrite());
+            System.out.println("Readable: " + files.canRead());
+            System.out.println("File size in bytes: " + files.length());
         }
         return files;
     }
-
     public static void main(String[] args)  {
         try {
-            System.out.println("Welcome to Umuzi's VisInfoCap");
+            System.out.println("* Umuzi Management Systems *");
             System.out.println(" ");
             int choice;
             char repeat;
@@ -81,38 +74,34 @@ public class Visitor {
             do {
                 //Menu options
                 System.out.println("****************************");
-                System.out.println("* Umuzi Management Systems *");
-                System.out.println("* Enter Your Menu Choice:  *");
-                System.out.println("*       1. Save            *");
-                System.out.println("*       2. Load            *");
+                System.out.println("      Select your option    *");
+                System.out.println("*       1. Save             *");
+                System.out.println("*       2. Load             *");
                 System.out.println("****************************");
                 choice = select.nextInt();
-
-
+                //switching cases save and load
                 switch (choice) {
-
                     case 1:
-                    Scanner input0 = new Scanner(System.in);
-                   System.out.println("please enter your name: ");
-                         String fullName = input0.nextLine();
-            Scanner input1 = new Scanner(System.in);
-            System.out.println("please enter your age");
-            int age = input1.nextInt();
-            Scanner input2 = new Scanner(System.in);
-            System.out.println("please enter your comments");
-            String comments = input2.nextLine();
-            System.out.println(" ");
-            Scanner input3 = new Scanner(System.in);
-            System.out.println("please enter your assistant name");
-            String assistant = input3.nextLine();
-            saves(fullName,age,comments, assistant);
-                        break;
-                    case 2:
-                        Scanner inputLoad = new Scanner(System.in);
-                        System.out.println("please enter your name: ");
-                        fullName = inputLoad.nextLine();
-                        load(fullName);
-                        break;
+                         Scanner input0 = new Scanner(System.in);
+                           System.out.println("please enter your name: ");
+                             String fullName = input0.nextLine();
+                         Scanner input1 = new Scanner(System.in);
+                           System.out.println("please enter your age");
+                             int age = input1.nextInt();
+                         Scanner input2 = new Scanner(System.in);
+                           System.out.println("please enter your comments");
+                             String comments = input2.nextLine();
+                         Scanner input3 = new Scanner(System.in);
+                           System.out.println("please enter your assistant name");
+                             String assistant = input3.nextLine();
+                   saves(fullName,age,comments, assistant);
+                   break;
+                   case 2:
+                         Scanner inputLoad = new Scanner(System.in);
+                           System.out.println("please enter your name: ");
+                             fullName = inputLoad.nextLine();
+                   load(fullName);
+                    break;
                     default:
                         System.out.println("Invalid menu choice , try again.");
                         break;
