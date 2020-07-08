@@ -3,10 +3,13 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class VisitorTest {
     @Test
     public void visitorsaveTest() throws NullPointerException, IOException {
-        Assert.check(true, Visitor.saves("tshepo lesley seleke",20 ,
+        Assert.check(Visitor.saves("tshepo lesley seleke", 20,
                 "This file was created by Test Class",
                 "crespo"));
     } @Test

@@ -41,8 +41,9 @@ public class Visitor {
             System.out.println(" ");
             e.printStackTrace();
         }
-        assert fileWriter != null;
-        fileWriter.close();
+        if (fileWriter != null) {
+            fileWriter.close();
+        }
         return true;
     }
     //search for a file
