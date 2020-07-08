@@ -8,12 +8,12 @@ import static org.junit.Assert.assertTrue;
 
 public class VisitorTest {
     @Test
-    public void visitorsaveTest() throws NullPointerException, IOException {
+    public void visitorSaveTest() throws NullPointerException, IOException {
         Assert.check(Visitor.saves("tshepo lesley seleke", 20,
                 "This file was created by Test Class",
                 "crespo"));
     } @Test
-    public void visitorloadTest() throws IOException {
+    public void visitorLoadTest() {
 
         Assert.check(true,Visitor.load("tshepo lesley seleke"));
     }
